@@ -58,7 +58,13 @@ class LoginPage extends Component {
         });
     }
 
-    SignOut(){
+    PatientSignOut(){
+        sessionStorage.setItem('token', null);
+        sessionStorage.setItem('identity', 'patient');
+        browserHistory.push('/patientoverview');
+    }
+
+    DoctorSignOut(){
         sessionStorage.setItem('token', null);
         sessionStorage.setItem('identity', 'doctor');
         browserHistory.push('/patientsrecord');
@@ -74,7 +80,8 @@ class LoginPage extends Component {
                     SignUp={this.SignUp.bind(this)}
                     DocSignIn={this.DocSignIn.bind(this)}
                     PatientSignIn={this.PatientSignIn.bind(this)}
-                    SignOut={this.SignOut.bind(this)}
+                    PatientSignOut={this.PatientSignOut.bind(this)}
+                    DoctorSignOut={this.DoctorSignOut.bind(this)}
                 />
             </div>
         );
