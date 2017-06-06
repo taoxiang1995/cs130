@@ -267,7 +267,7 @@ export class Card_group extends Component {
                         Name
                     </div>
                     <div className="right-block">
-                        {this.state.name}
+                        {this.props.groupInfo.name}
                     </div>
                 </div>
 

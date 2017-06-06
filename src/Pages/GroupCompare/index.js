@@ -13,7 +13,10 @@ class PatientsOverview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groups: [1,2]
+            groups: [
+                {name: "TEST 1"},
+                {name: "TEST 2"}
+            ]
         };
     };
 
@@ -38,12 +41,13 @@ class PatientsOverview extends Component {
         })
     }
 
+    //removeGroup={this.removeGroup.bind(this)}
     renderGroups(){
         return this.state.groups
         .map( function(group){
             return (
                 <div className="card">
-                    <Card_group groupInfo={group} removeGroup={this.removeGroup.bind(this)}/>
+                    <Card_group groupInfo={group}/>
                 </div>
             )
         })
@@ -60,7 +64,7 @@ class PatientsOverview extends Component {
                         <Card_create_group addGroup={this.addGroup.bind(this)}/>
                     </div>
 
-                    {"this.renderGroups()"}
+                    {this.renderGroups()}
                     
                     <div className="title">Results</div>
                     <div className="card">
