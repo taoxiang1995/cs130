@@ -17,8 +17,25 @@ class PatientsOverview extends Component {
         };
     };
 
-    handleAddGroupOnClick(){
+    addGroup(g){
+        this.setState({
+            groups: this.state.groups.push(g)
+        })
+    }
 
+    removeGroup(name){
+        this.setState({
+            groups: this.state.groups.filter(
+                (g) =>{
+                    if(g.name == name){
+                        return false
+                    }
+                    else{
+                        return true
+                    }
+                }
+            )
+        })
     }
 
     renderGroups(){
@@ -26,7 +43,7 @@ class PatientsOverview extends Component {
         .map( function(group){
             return (
                 <div className="card">
-                    <Card_group/>
+                    <Card_group groupInfo={group} removeGroup={this.removeGroup.bind(this)}/>
                 </div>
             )
         })
@@ -40,10 +57,10 @@ class PatientsOverview extends Component {
                     <div className="title">Create Groups</div>
 
                     <div className="card">
-                        <Card_create_group/>
+                        <Card_create_group addGroup={this.addGroup.bind(this)}/>
                     </div>
 
-                    {this.renderGroups()}
+                    {"this.renderGroups()"}
                     
                     <div className="title">Results</div>
                     <div className="card">

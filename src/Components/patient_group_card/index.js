@@ -5,17 +5,11 @@ import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'rea
 import 'react-dates/lib/css/_datepicker.css';
 
 
-const options = [
-  'one', 'two', 'three'
-]
-const defaultOption = options[0]
-
 export class Card_create_group extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            value: "",
             isAdding: false,
             name:'',
             age_max:"100",
@@ -33,16 +27,34 @@ export class Card_create_group extends Component {
     handleClick() {
         this.setState({isAdding: true});
 
-        // This probably where you would have an `ajax` call
-        setTimeout(() => {
-        // Completed of async action, set loading state back
-        this.setState({isAdding: false});
-        }, 2000);
-    };
+        this.props.addGroup({
+            name: this.state.name,
+            age_max: this.state.age_max,
+            age_min: this.state.age_min,
+            gender: this.state.gender,
+            medication: this.state.medication,
+            policy: this.state.policy,
+            dr_max: this.state.dr_max,
+            dr_min: this.state.dr_min,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate
+        });
 
-    handleChange(e) {
-        debugger;
-        this.setState({ value: e.target.value });
+        this.setState({
+            isAdding: false,
+            name:'',
+            age_max:"100",
+            age_min:"0",
+            gender:'Both',
+            medication:'No Medication',
+            policy:'No Policy',
+            dr_max:"4",
+            dr_min:"0",
+            startDate:null,
+            endDate: null
+        })
+        
+        this.setState({isAdding: false});
     };
 
     handleInput(e){
