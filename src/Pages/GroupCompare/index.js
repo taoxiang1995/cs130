@@ -47,10 +47,12 @@ class PatientsOverview extends Component {
         .map( function(group){
             return (
                 <div className="card">
-                    <Card_group groupInfo={group}/>
+                    <Card_group
+                    removeGroup={this.removeGroup.bind(this)} 
+                    groupInfo={group}/>
                 </div>
             )
-        })
+        }.bind(this))
     }
 
     render() {
