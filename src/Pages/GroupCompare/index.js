@@ -13,16 +13,13 @@ class PatientsOverview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groups: [
-                {name: "TEST 1"},
-                {name: "TEST 2"}
-            ]
+            groups: []
         };
     };
 
     addGroup(g){
         this.setState({
-            groups: this.state.groups.push(g)
+            groups: this.state.groups.concat([g])
         })
     }
 
@@ -57,21 +54,18 @@ class PatientsOverview extends Component {
 
     render() {
         return (
-            <div className="PatientsOverview">
-    
-                <div className="info-cards-bg">
-                    <div className="title">Create Groups</div>
+            <div className="info-cards-bg">
+                <div className="title">Create Groups</div>
 
-                    <div className="card">
-                        <Card_create_group addGroup={this.addGroup.bind(this)}/>
-                    </div>
+                <div className="card">
+                    <Card_create_group addGroup={this.addGroup.bind(this)}/>
+                </div>
 
-                    {this.renderGroups()}
-                    
-                    <div className="title">Results</div>
-                    <div className="card">
-                        <AdjustableBloodStatLineChart/>
-                    </div>
+                {this.renderGroups()}
+                
+                <div className="title">Results</div>
+                <div className="card">
+                    <AdjustableBloodStatLineChart/>
                 </div>
             </div>
         );
