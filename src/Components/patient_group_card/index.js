@@ -233,26 +233,13 @@ export class Card_group extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "",
             isAdding: false,
-            name:'Group1',
-            age_max:"100",
-            age_min:"0",
-            gender:'Both',
-            medication:'No Medication',
-            policy:'No Policy',
-            dr_max:"4",
-            dr_min:"0",
-            startDate:null,
-            endDate: null
         };
     };
 
     handleClick() {
         this.setState({isAdding: true});
-
-        this.props.removeGroup(this.state.name)
-
+        this.props.removeGroup(this.props.groupInfo.name)
         this.setState({isAdding: false});
     };
 
@@ -274,7 +261,7 @@ export class Card_group extends Component {
                         Age Range
                     </div>
                     <div className="right-block">
-                        {this.state.age_min + " TO " + this.state.age_max}
+                        {this.props.groupInfo.age_min + " TO " + this.props.groupInfo.age_max}
                     </div>
                 </div>
 
@@ -283,7 +270,7 @@ export class Card_group extends Component {
                         Gender
                     </div>
                     <div className="right-block">
-                        {this.state.gender}
+                        {this.props.groupInfo.gender}
                     </div>
                 </div>
 
@@ -292,7 +279,10 @@ export class Card_group extends Component {
                         Time Range
                     </div>
                     <div className="right-block">
-                        {"time_start to time_end"}
+                        <DateRangePicker
+                            startDate={this.props.groupInfo.startDate} // momentPropTypes.momentObj or null,
+                            endDate={this.props.groupInfo.endDate} // momentPropTypes.momentObj or null,
+                            />
                     </div>
                 </div>
 
@@ -301,7 +291,7 @@ export class Card_group extends Component {
                         DR Score
                     </div>
                     <div className="right-block">
-                        {this.state.dr_min + " TO " + this.state.dr_max}
+                        {this.props.groupInfo.dr_min + " TO " + this.props.groupInfo.dr_max}
                     </div>
                 </div>
 
@@ -310,7 +300,7 @@ export class Card_group extends Component {
                         Medication
                     </div>
                     <div className="right-block">
-                        {this.state.medication}
+                        {this.props.groupInfo.medication}
                     </div>
                 </div>
 
@@ -319,7 +309,7 @@ export class Card_group extends Component {
                         Policy
                     </div>
                     <div className="right-block">
-                        {this.state.policy}
+                        {this.props.groupInfo.policy}
                     </div>
                 </div>
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import '../style.css';
 
 const data = {
@@ -54,28 +55,50 @@ const data = {
 
 
 const options={
-    maintainAspectRatio: false,
-
     scales: {
-            xAxes: [{
-                stacked: false
-            }],
-            yAxes: [{
-                stacked: false
-            }]
+        xAxes: [{
+            type: 'linear',
+            position: 'bottom'
+        }]
     }
 }
 
 
 class AdjustableBloodStatLineChart extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: null,
+            endDate: null,
+            data: data,
+            options: options,
+        };
+    };
+
     render() {
         return (
             <div className="AdjustableRectangleBackground">
                 <p className="Title">
-                    {"Some title"}
+                    <div>{this.props.title}</div>
+                    <div style={
+                        {
+                            "display":"flex",
+                            "flexDirection": "row",
+                            "paddingLeft": "2%",
+                            "alignItems": "center",
+                        }}>
+                        <DateRangePicker
+                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                        />
+                    </div>
                 </p>
                 <div className="AdjustableChart">
-                    <Line height="100%" data={data} options={options}/>
+                    <Line data={this.state.data} options={this.state.options}/>
                 </div>
             </div>
         );

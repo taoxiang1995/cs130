@@ -1,0 +1,16 @@
+.SideBar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    width: 70px;
+    background-color: #f1f1f1;
+}
+
+.Icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}

@@ -13,18 +13,14 @@ class GroupCompare extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            groups: [
-                {name: "TEST 1"},
-                {name: "TEST 2"}
-            ]
+            groups: []
         };
     };
 
     addGroup(g){
         this.setState({
-            groups: this.state.groups.push(g)
+            groups: this.state.groups.concat([g])
         })
-        debugger
     }
 
     removeGroup(name){
