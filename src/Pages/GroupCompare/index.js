@@ -5,6 +5,7 @@ import BarChart from '../../Components/data_charts/bar';
 import BloodStatLineChart from '../../Components/data_charts/line';
 import {Card_create_group, Card_group} from '../../Components/patient_group_card';
 import AdjustableBloodStatLineChart from '../../Components/data_charts/adjustable_multi_line';
+import SideBar from "../../Components/SideBar"
 import './style.css';
 
 
@@ -54,18 +55,21 @@ class PatientsOverview extends Component {
 
     render() {
         return (
-            <div className="info-cards-bg">
-                <div className="title">Create Groups</div>
+            <div className="Page">
+                <SideBar/>
+                <div className="info-cards-bg">
+                    <div className="title">Create Groups</div>
 
-                <div className="card">
-                    <Card_create_group addGroup={this.addGroup.bind(this)}/>
-                </div>
+                    <div className="card">
+                        <Card_create_group addGroup={this.addGroup.bind(this)}/>
+                    </div>
 
-                {this.renderGroups()}
-                
-                <div className="title">Results</div>
-                <div className="card">
-                    <AdjustableBloodStatLineChart/>
+                    {this.renderGroups()}
+                    
+                    <div className="title">Results</div>
+                    <div className="card">
+                        <AdjustableBloodStatLineChart/>
+                    </div>
                 </div>
             </div>
         );

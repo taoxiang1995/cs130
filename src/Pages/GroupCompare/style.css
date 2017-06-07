@@ -1,6 +1,12 @@
+.Page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .info-cards-bg{
     margin: 0%;
-    padding-left: 4%;
+    padding-left: 70px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
