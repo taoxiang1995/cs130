@@ -8,6 +8,29 @@ import './style.css';
 
 
 class PatientsOverview extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            records : [],
+        }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:9000/patients', {
+            //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            })
+            .then((response)=>{
+                //do soemthign with respnse
+                this.setState({
+                    records: response.data
+                })
+            })
+            .catch(function(error) {
+        
+        });
+    }
+
     render() {
         return (
             <div className="Page">

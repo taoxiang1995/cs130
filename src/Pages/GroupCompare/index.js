@@ -67,7 +67,13 @@ class GroupCompare extends Component {
                     
                     <div className="title">Results</div>
                     <div className="card">
-                        <AdjustableBloodStatLineChart/>
+                        <AdjustableBloodStatLineChart title="Blood Suger Stats"/>
+                    </div>
+                    <div className="card">
+                        <AdjustableBloodStatLineChart title="Blood Pressure Stats"/>
+                    </div>
+                    <div className="card">
+                        <AdjustableBloodStatLineChart title="Blood Fat Stats"/>
                     </div>
                 </div>
             </div>
