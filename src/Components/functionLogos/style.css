@@ -1,0 +1,27 @@
+.btn-logo{
+  border: 0px solid lightpink !important;
+  /*box-shadow: 0 1px 10px rgba(0, 0, 0, 0.46);*/
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 1.5em !important;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px !important;
+}
+
+#recs{
+    background: linear-gradient(to bottom right, #33FFFF, #3361FF) !important
+}
+
+#dem{
+    background: linear-gradient(to bottom right, #FF9633, #FF3933) !important
+}
+
+#cmp{
+    background: linear-gradient(to bottom right, #EC33FF, #8033FF) !important
+}
