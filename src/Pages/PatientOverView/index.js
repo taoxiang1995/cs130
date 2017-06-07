@@ -7,6 +7,7 @@ import LargeNameCard from '../../Components/large_patient_card';
 import SearchBar from '../../Components/SearchBar';
 import Add from '../../Components/Add';
 import Logo from '../../Components/Logo';
+import SideBar from "../../Components/SideBar"
 import './style.css';
 
 
@@ -149,19 +150,13 @@ class PatientOverView extends Component {
 
     render() {
         return (
-            <div className="PatientOverview">
-                <div className="PatientOverview-head">
-                    <div className="PatientOverview-logo PatientOverview-headcontents">
-                        <Logo/>
-                    </div>
-                    <div className="PatientOverview-search PatientOverview-headcontents">
-                        <SearchBar/>
-                    </div>
-                    <div className="PatientOverview-add PatientOverview-headcontents">
-                        <Add/>
-                    </div>
-                </div>
+            <div className="Page">
+                <SideBar/>
+
                 <div className="info-cards-bg">
+
+                    <div className="title">Patients Overview</div>
+
                     <div className="card">
                         <LargeNameCard
                             name={this.state.patientInfo.name}

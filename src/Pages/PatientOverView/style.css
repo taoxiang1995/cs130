@@ -1,53 +1,30 @@
-.PatientOverview{
+.Page{
     display: flex;
-    flex-direction: column;
-    background-color: #f1f1f1;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .info-cards-bg{
-    flex: 1;
-    margin-left: 4%;
+    margin: 0%;
+    padding-left: 70px;
+    height: 100vh;
+    width: 100vw;
+    align-content: flex-start;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    background-color: #f1f1f1;
     flex-wrap: wrap;  
+}
+
+.title{
+    width: 100%;
+    font-size: 240%;
+    padding: 1%;
 }
 
 .card{
     padding: 1%;
-}
-
-.PatientOverview-head{
-    flex: 1;
-    margin-left: 2%;
-    margin-right: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items:  center;
-    /*height: 60px;*/
-}
-.PatientOverview-headcontents{
-    /*height: 100%;*/
-   padding-top: 2%;
-   padding-bottom: 2%;
-}
-.PatientOverview-logo{
-    flex-grow: 1;
-    padding-right: 2%;
-    /*align-self: flex-start;*/
-}
-
-.PatientOverview-search{
-    flex-grow: 1;
-    /*align-self: center;*/
-    z-index: 0;
-}
-
-.PatientOverview-add{
-    flex-grow: 1;
-    padding-left: 1%
-    /*align-self: flex-end;*/
 }
 
 .PatientOverview-form{

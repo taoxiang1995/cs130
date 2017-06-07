@@ -7,6 +7,9 @@
 .info-cards-bg{
     margin: 0%;
     padding-left: 70px;
+    height: 100vh;
+    width: 100vw;
+    align-content: flex-start;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

@@ -3,30 +3,19 @@ import axios from 'axios';
 import DoughnutChart from '../../Components/data_charts/doughnut';
 import BarChart from '../../Components/data_charts/bar';
 import BloodStatLineChart from '../../Components/data_charts/line';
-import LargeNameCard from '../../Components/large_patient_card';
-import SearchBar from '../../Components/SearchBar';
-import Add from '../../Components/Add';
-import Logo from '../../Components/Logo';
+import SideBar from "../../Components/SideBar"
 import './style.css';
 
 
 class PatientsOverview extends Component {
     render() {
         return (
-            <div className="PatientsOverview">
-                <div className="PatientsRecord-head">
-                    <div className="PatientsRecord-logo PatientsRecord-headcontents">
-                        <Logo/>
-                    </div>
-                    <div className="PatientsRecord-search PatientsRecord-headcontents">
-                        <SearchBar/>
-                    </div>
-                    <div className="PatientsRecord-add PatientsRecord-headcontents">
-                        <Add/>
-                    </div>
-                </div>
-                
+            <div className="Page">
+                <SideBar/>
+
                 <div className="info-cards-bg">
+                    <div className="title">Demographic Statistics</div>
+                    
                     <div className="card">
                         <DoughnutChart
                             title="Gender"
