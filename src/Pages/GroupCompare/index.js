@@ -8,7 +8,7 @@ import AdjustableBloodStatLineChart from '../../Components/data_charts/adjustabl
 import './style.css';
 
 
-class PatientsOverview extends Component {
+class GroupCompare extends Component {
 
     constructor(props) {
         super(props);
@@ -24,6 +24,7 @@ class PatientsOverview extends Component {
         this.setState({
             groups: this.state.groups.push(g)
         })
+        debugger
     }
 
     removeGroup(name){
@@ -41,7 +42,6 @@ class PatientsOverview extends Component {
         })
     }
 
-    //removeGroup={this.removeGroup.bind(this)}
     renderGroups(){
         return this.state.groups
         .map( function(group){
@@ -57,25 +57,22 @@ class PatientsOverview extends Component {
 
     render() {
         return (
-            <div className="PatientsOverview">
-    
-                <div className="info-cards-bg">
-                    <div className="title">Create Groups</div>
+            <div className="info-cards-bg">
+                <div className="title">Create Groups</div>
 
-                    <div className="card">
-                        <Card_create_group addGroup={this.addGroup.bind(this)}/>
-                    </div>
+                <div className="card">
+                    <Card_create_group addGroup={this.addGroup.bind(this)}/>
+                </div>
 
-                    {this.renderGroups()}
-                    
-                    <div className="title">Results</div>
-                    <div className="card">
-                        <AdjustableBloodStatLineChart/>
-                    </div>
+                {this.renderGroups()}
+                
+                <div className="title">Results</div>
+                <div className="card">
+                    <AdjustableBloodStatLineChart/>
                 </div>
             </div>
         );
     }
 }
 
-export default PatientsOverview;
+export default GroupCompare;

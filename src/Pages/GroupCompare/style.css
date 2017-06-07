@@ -1,15 +1,10 @@
-.PatientsOverview{
-    display: flex;
-    flex-direction: column;
-    background-color: #f1f1f1;
-    justify-content: flex-start;
-}
-
 .info-cards-bg{
-    margin-left: 4%;
+    margin: 0%;
+    padding-left: 4%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    background-color: #f1f1f1;
     flex-wrap: wrap;  
 }
 

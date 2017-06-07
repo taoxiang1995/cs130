@@ -251,11 +251,9 @@ export class Card_group extends Component {
     handleClick() {
         this.setState({isAdding: true});
 
-        // This probably where you would have an `ajax` call
-        setTimeout(() => {
-        // Completed of async action, set loading state back
+        this.props.removeGroup(this.state.name)
+
         this.setState({isAdding: false});
-        }, 2000);
     };
 
     render() {

@@ -41,6 +41,7 @@ class PatientsRecord extends Component {
             searchTerm
         })
     }
+    
     patientSignUp() {
         var popup = document.getElementById("signUpForm");
         popup.classList.toggle("show");
