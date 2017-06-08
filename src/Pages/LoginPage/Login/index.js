@@ -5,8 +5,16 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state={
-            auth_action:'login'
+            auth_action:'login',
+            userid: '',
+            password:''
         }
+    }
+
+    handleInputChange(e){
+        this.setState({
+            [e.target.name]:e.target.value
+        })
     }
 
     renderRegister(){
@@ -14,15 +22,19 @@ class Login extends Component {
             <div className = "register-block" id="register-form">
                 <div className = "input-group" >
                     <span className="input-group-addon"><i className="fa fa-user-o"></i></span>
-                    <input className="form-control" type="text" placeholder="123456789" name="userid"/>
+                    <input
+                        onChange={this.handleInputChange.bind(this)} 
+                        className="form-control" type="text" placeholder="123456789" name="userid"/>
                 </div>
                 <div className = "input-group" >
                     <span className="input-group-addon"><i className="fa fa-key"></i></span>
-                    <input className="form-control" type="password" name="password"/>
+                    <input
+                        onChange={this.handleInputChange.bind(this)}  
+                        className="form-control" type="password" name="password"/>
                 </div>
                 <div className = "login-group">
                     <input
-                        onClick={this.props.DoctorSignOut} 
+                        onClick={()=>this.props.SignUp(this.state.userid, this.state.password)} 
                         className="btn btn-primary btn-block" type="submit" value="Register" name="register"/>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import Login from './Login';
 import './style.css';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
-import {serverAddress} from '../../config.js';
+import {serverAddress} from '../../config';
 class LoginPage extends Component {
     constructor(props){
         super(props);
@@ -13,7 +13,7 @@ class LoginPage extends Component {
     }
 
     SignUp(email, password){
-        axios.post(serverAddress+'api/v1/signup', {
+        axios.post(serverAddress+'api/v1/signup_doctor', {
         email,
         password
         })
@@ -74,7 +74,6 @@ class LoginPage extends Component {
     
     render() {
         return (
-
             <div className="login-container">
                 <Login
                     SignUp={this.SignUp.bind(this)}
