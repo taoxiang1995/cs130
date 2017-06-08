@@ -99,7 +99,7 @@ class AdjustableBloodStatLineChart extends Component {
                     </div>
                 </p>
                 <div className="AdjustableChart">
-                    <Line width="100%" height="270" data={this.state.data} options={this.state.options}/>
+                    <Line width="100%" height="230" data={this.state.data} options={this.state.options}/>
                 </div>
             </div>
         );

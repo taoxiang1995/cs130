@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import '../style.css';
 
 const data = {
@@ -35,12 +36,36 @@ const options={}
 
 
 class BloodStatLineChart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: null,
+            endDate: null,
+        };
+    };
+
     render() {
         return (
             <div className="RectangleBackground">
                 <p className="Title">
-                    {this.props.title}
+                    <div>{this.props.title}</div>
+                    <div style={
+                        {
+                            "display":"flex",
+                            "flexDirection": "row",
+                            "paddingLeft": "2%",
+                            "alignItems": "center",
+                        }}>
+                        <DateRangePicker
+                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                        />
+                    </div>
                 </p>
+
                 <div className="Chart">
                     <Line data={this.props.data} options={this.props.options}/>
                 </div>
