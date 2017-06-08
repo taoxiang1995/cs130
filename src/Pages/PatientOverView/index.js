@@ -166,30 +166,6 @@ class PatientOverView extends Component {
                             className="card"
                         />
                     </div>
-                    <div className="card">
-                        <BloodStatLineChart 
-                            title="Blood Suger Changes"
-                            data={this.state.bloodSugerData}
-                            options={{legend: {
-                                display: false
-                            }}}
-                        />
-                    </div>
-                    <div className="card">
-                        <BloodStatLineChart
-                            title="Blood Pressure Changes"
-                            data={this.state.bloodPressureData}
-                        />
-                    </div>
-                    <div className="card">
-                        <BloodStatLineChart
-                            title="Blood Fat Changes"
-                            data={this.state.bloodFatData}
-                            options={{legend: {
-                                display: false
-                            }}}
-                        />
-                    </div>
 
                     <div className="card">
                         <NewRecordCard
@@ -201,6 +177,34 @@ class PatientOverView extends Component {
                             DoctorUpdateForm={this.doctorUpdate.bind(this)}
                         />
                     </div>
+
+                    <div className="card">
+                        <BloodStatLineChart 
+                            title="Blood Suger Changes"
+                            data={this.state.bloodSugerData}
+                            options={{legend: {
+                                display: false
+                            }}}
+                        />
+                    </div>
+
+                    <div className="card">
+                        <BloodStatLineChart
+                            title="Blood Pressure Changes"
+                            data={this.state.bloodPressureData}
+                        />
+                    </div>
+
+                    <div className="card">
+                        <BloodStatLineChart
+                            title="Blood Fat Changes"
+                            data={this.state.bloodFatData}
+                            options={{legend: {
+                                display: false
+                            }}}
+                        />
+                    </div>
+
                 </div>
                 <div className="PatientOverview-form" id="updateForm">
                     <div className="PatientOverview-form-pop" >
