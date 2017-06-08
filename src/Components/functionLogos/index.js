@@ -6,7 +6,7 @@ export class LogoPatientRecords extends Component {
     render() {
         return (
             <div className="logo-component">
-                <Link to="Demography" >
+                <Link to="patientsrecord" >
                     <button className="btn btn-primary btn-logo"
                         id="recs">
                         <div>Rec</div>
@@ -36,7 +36,7 @@ export class LogoCompare extends Component {
     render() {
         return (
             <div className="logo-component">
-                <Link to="Demography" >
+                <Link to="Compare" >
                     <button className="btn btn-primary btn-logo"
                         id="cmp">
                         <div>Cmp</div>
