@@ -7,6 +7,7 @@ import Logo from '../../Components/Logo';
 import PatientSignUp from '../../Components/patient_sign_up';
 import PatientUpdate from '../../Components/patient_update';
 import {Link} from 'react-router';
+import SideBar from '../../Components/SideBar';
 import './style.css';
 
 class PatientsRecord extends Component {
@@ -80,11 +81,10 @@ class PatientsRecord extends Component {
     render() {
         return (
             <div className="PatientsRecord-main">
+                <SideBar/>
                 <div className="PatientsRecord-page">
                     <div className="PatientsRecord-head">
-                        <div className="PatientsRecord-logo PatientsRecord-headcontents">
-                            <Logo/>
-                        </div>
+                        
                         <div className="PatientsRecord-search PatientsRecord-headcontents">
                             <SearchBar
                             searchTerm={this.state.searchTerm}

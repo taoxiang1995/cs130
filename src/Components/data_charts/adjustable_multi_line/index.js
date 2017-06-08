@@ -55,6 +55,7 @@ const data = {
 
 
 const options={
+    maintainAspectRatio: false, 
     scales: {
         xAxes: [{
             type: 'linear',
@@ -98,7 +99,7 @@ class AdjustableBloodStatLineChart extends Component {
                     </div>
                 </p>
                 <div className="AdjustableChart">
-                    <Line data={this.state.data} options={this.state.options}/>
+                    <Line width="100%" height="270" data={this.state.data} options={this.state.options}/>
                 </div>
             </div>
         );
