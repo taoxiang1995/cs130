@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-content: space-around;
     z-index: 0;
+    overflow-y: scroll;
     
     /*background-color: #f1f1f1;*/
 }
@@ -57,11 +58,11 @@
     margin-left: 5%;
     margin-right: 5%;
     padding: 1%;
-    display: flex;
+    /*display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
 }
 
 .PatientsRecord-namecards{

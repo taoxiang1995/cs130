@@ -5,11 +5,14 @@ import './style.css';
 import axios from 'axios';
 import Time from 'react-time';
 import {serverAddress} from '../../config';
+import Alert from '../Alert';
 
 class DoctorUpdate extends Component {
     constructor(props){
         super(props);
         this.state={
+            shouldOpen: 'true',
+            content:'',   
             uniqueID  :0,
             page : 'base',
             personal_id:"xiangtao1995@gmail.com",
@@ -103,7 +106,6 @@ class DoctorUpdate extends Component {
 
     postUpdate()
     {
-        debugger;
       axios.post(`${serverAddress}api/v1/information`, {
       email:this.state.personal_id,
       DR:{
