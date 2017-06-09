@@ -9,6 +9,7 @@ import PatientUpdate from '../../Components/patient_update';
 import {Link} from 'react-router';
 import SideBar from '../../Components/SideBar';
 import {serverAddress} from '../../config';
+import Alert from '../../Components/Alert';
 import './style.css';
 
 class PatientsRecord extends Component {
@@ -19,6 +20,9 @@ class PatientsRecord extends Component {
         this.state={
             records : [],
             searchTerm:'',
+            shouldOpen:true,
+            type:'',
+
             // addPatient: false
         }
     }
@@ -49,6 +53,10 @@ class PatientsRecord extends Component {
         popup.classList.toggle("show");
     }
 
+    getLastIndex(records){
+        return records.length-1;
+    }
+
     renderRecords(){
         return this.state.records
         .filter(
@@ -59,21 +67,18 @@ class PatientsRecord extends Component {
                 return false;
         })
         .map(function(record){
-            let idx_last_bs = record.blood_sugar.length;
-            let idx_last_bf = record.blood_fat.length;
-            let idx_last_bp = record.blood_pressure.length;
             return (
-                <div className = "PatientsRecord-namecards">
-                    <Link to="patientoverview">
+                <div className = "PatientsRecord-namecards col-md-4 col-sm-6 col-lg-3">
+                    <Link to={"patientoverview?id="+record.patient.id}>
                         <NameCard
                             name={record.patient.name}
                             id={record.patient.id}
                             birthday={record.patient.birthdate}
                             age={new Date().getFullYear() - new Date(record.patient.birthdate).getFullYear()}
-                            blood_sugar={record.blood_sugar[idx_last_bs]? record.blood_sugar[idx_last_bs]:0}
-                            blood_fat={record.blood_fat[idx_last_bf]? record.blood_fat[idx_last_bf]:0}
-                            blood_pressure_high={record.blood_pressure[idx_last_bp]? record.blood_pressure[idx_last_bp].high:0}
-                            blood_pressure_low={record.blood_pressure[idx_last_bp]? record.blood_pressure[idx_last_bp].low:0}
+                            blood_sugar={record.blood_sugar[record.blood_sugar.length-1].number}
+                            blood_fat={record.blood_fat[record.blood_fat.length-1].number}
+                            blood_pressure_high={record.blood_pressure[record.blood_pressure.length-1].high}
+                            blood_pressure_low={record.blood_pressure[record.blood_pressure.length-1].low}
                         />
                     </Link>
                 </div>
@@ -101,8 +106,10 @@ class PatientsRecord extends Component {
                             />
                         </div>
                     </div>
-                    <div className="PatientsRecord-body" >
-                        {this.renderRecords()}
+                    <div className="PatientsRecord-body container" >
+                        <div className="row">
+                            {this.renderRecords()}
+                        </div>
                     </div>
                     <div className="PatientsRecord-form" id="signUpForm">
                         <div className="PatientsRecord-form-pop">

@@ -9,6 +9,7 @@
     "json-server": "^0.10.0",
     "moment": "^2.18.1",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
     "react-addons-shallow-compare": "^15.5.2",
     "react-bootstrap": "^0.31.0",
     "react-bootstrap-daterangepicker": "^3.4.0",

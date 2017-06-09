@@ -68,18 +68,13 @@ class PatientsOverview extends Component {
                 bar_borderColor.push(borderColor[i%borderColor.length])
             }
         }
-        debugger
         return ([bar_labels, bar_backgroundColor, bar_borderColor, bar_data])
     }
 
     render() {
-        let num_male = this.state.records.filter(record=>record.patient.sex == "male").length
-        let num_female = this.state.records.filter(record=>record.patient.sex == "female").length
         let lst_patient_age = this.state.records.map(record =>new Date().getFullYear() - new Date(record.patient.birthdate).getFullYear())
-        debugger;
         let [bar_labels, bar_backgroundColor, bar_borderColor, bar_data] = this.get_bar_params()
         debugger;
-
         return (
             <div className="Page">
                 <SideBar/>
@@ -89,6 +84,43 @@ class PatientsOverview extends Component {
                     
                     <div className="card">
                         <DoughnutChart
+                            title="DR Scores"
+                            data={{
+                                labels: [0,1,2,3,4],
+                                datasets:[{
+                                    data: [
+                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 0).length, 
+                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 1).length,
+                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 2).length,
+                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 3).length,
+                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 4).length
+                                    ],
+                                    backgroundColor: [
+                                        "#B8FF33",
+                                        "#ECFF33",
+                                        "#FFD733",
+                                        "#FF8033",
+                                        "#FF4933"
+                                    ],
+                                    hoverBackgroundColor: [
+                                        "#B8FF33",
+                                        "#ECFF33",
+                                        "#FFD733",
+                                        "#FF8033",
+                                        "#FF4933"
+                                    ]
+                                }]
+                            }}
+                            options={{
+                                legend: {
+                                    position: "bottom"
+                                }
+                            }}
+                        />
+                    </div>
+
+                    <div className="card">
+                        <DoughnutChart
                             title="Gender"
                             data={{
                                 labels: [
@@ -96,7 +128,10 @@ class PatientsOverview extends Component {
                                     "female"
                                 ],
                                 datasets:[{
-                                    data: [num_male, num_female],
+                                    data: [
+                                        this.state.records.filter(record=>record.patient.sex == "male").length, 
+                                        this.state.records.filter(record=>record.patient.sex == "female").length
+                                    ],
                                     backgroundColor: [
                                         "#36A2EB",
                                         "#FF6384"
