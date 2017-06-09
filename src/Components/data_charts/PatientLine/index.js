@@ -121,6 +121,15 @@ class BloodStatLineChart extends Component {
         }
     }
 
+    /**
+     * <DateRangePicker
+            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+        />
+     */
     render() {
         return (
             <div className="RectangleBackground">
@@ -133,13 +142,6 @@ class BloodStatLineChart extends Component {
                             "paddingLeft": "2%",
                             "alignItems": "center",
                         }}>
-                        <DateRangePicker
-                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                        />
                     </div>
                 </p>
 

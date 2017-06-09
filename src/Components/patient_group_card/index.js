@@ -153,7 +153,7 @@ export class Card_create_group extends Component {
 
                 <div className="row_pair">
                     <div className="left-block">
-                        DR Score
+                        Latest DR
                     </div>
                     <div className="right-block">
                         <div className="full-width">

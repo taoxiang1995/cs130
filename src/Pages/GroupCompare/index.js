@@ -31,10 +31,10 @@ class GroupCompare extends Component {
             })
             .then((response)=>{
                 //do soemthign with respnse
-                debugger;
                 this.setState({
                     records: response.data.data.response
                 })
+                debugger;
             })
             .catch(function(error) {
         
@@ -74,11 +74,13 @@ class GroupCompare extends Component {
 
     updateChart(){
         this.state.groups.forEach(function(group, index){
+            let lst_flt_rec = this.filteredRecords(group)
+
             this.setState({
                 chart_data_bs:[...this.state.chart_data_bs, {
                     label:group.name?group.name:"unknown group",
                     //[{x:12, y:12}]
-                    data:this.formatData(this.filteredRecords(group)[0].blood_sugar, "number"),
+                    data:this.formatData(lst_flt_rec[Math.round(Math.random()*lst_flt_rec.length)].blood_sugar, "number"),
                 }],
                 chart_data_bf:[...this.state.chart_data_bf, {
                     label:group.name?group.name:"unknown group",
@@ -98,6 +100,15 @@ class GroupCompare extends Component {
             })
         }.bind(this))
     }
+    
+    removeFromChart(name){
+        this.setState({
+            chart_data_bs: this.state.chart_data_bs.filter(d => d.label != name),
+            chart_data_bf: this.state.chart_data_bf.filter(d => d.label != name),
+            chart_data_bph: this.state.chart_data_bph.filter(d => d.label != name),
+            chart_data_bpl: this.state.chart_data_bpl.filter(d => d.label != name),
+        })
+    }
 
     removeGroup(name){
         this.setState({
@@ -112,15 +123,23 @@ class GroupCompare extends Component {
                 }
             )
         })
+        this.removeFromChart(name)
     }
 
-     formatData(items, fieldName){
+    formatData(items, fieldName){
         return items.map(item=>{
             return {
                 x:item.created_at,
                 y:item[fieldName]
             }
-        })
+        }).sort(function(a, b){
+            var keyA = new Date(a.x),
+                keyB = new Date(b.x);
+            // Compare the 2 dates
+            if(keyA < keyB) return -1;
+            if(keyA > keyB) return 1;
+            return 0;
+        });
     }
 
     renderGroups(){
@@ -175,14 +194,20 @@ class GroupCompare extends Component {
                     </div>
                     <div className="card">
                         <BloodStatLineChart 
-                                title="Blood Suger Changes"
-                                data={this.state.chart_data_bs}
+                                title="Blood Fat Changes"
+                                data={this.state.chart_data_bf}
                             />
                     </div>
                     <div className="card">
                         <BloodStatLineChart 
-                                title="Blood Suger Changes"
-                                data={this.state.chart_data_bs}
+                                title="Blood Pressure High Changes"
+                                data={this.state.chart_data_bpl}
+                            />
+                    </div>
+                    <div className="card">
+                        <BloodStatLineChart 
+                                title="Blood Pressure Low Changes"
+                                data={this.state.chart_data_bpl}
                             />
                     </div>
                 </div>
