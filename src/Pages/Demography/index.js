@@ -4,6 +4,7 @@ import DoughnutChart from '../../Components/data_charts/doughnut';
 import BarChart from '../../Components/data_charts/bar';
 import BloodStatLineChart from '../../Components/data_charts/line';
 import SideBar from "../../Components/SideBar"
+import {serverAddress} from '../../config';
 import './style.css';
 
 
@@ -17,18 +18,17 @@ class PatientsOverview extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:9000/patients', {
-            //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        axios.get(`${serverAddress}api/v1/information`, {
+            headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
             })
             .then((response)=>{
                 //do soemthign with respnse
                 this.setState({
-                    records: response.data
+                    records: response.data.data.response
                 })
             })
             .catch(function(error) {
-        
-        });
+            });
     }
 
     render() {
