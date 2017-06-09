@@ -33,6 +33,8 @@ class PatientSignUp extends Component {
         'weight:'+ `${this.state.weight}` +'\n'+
         'sex:'+ this.state.sex +'\n')
         this.postNewPatient();
+        var popup = document.getElementById("signUpForm");
+        popup.classList.toggle("show");
     }
     
     postNewPatient()

@@ -44,14 +44,14 @@ class LoginPage extends Component {
     }
 
     PatientSignIn(email, password){
-        axios.post(serverAddress+'api/v1/patient_sign_in', {
+        axios.post(serverAddress+'api/v1/auth_patient', {
             email,
             password
         })
         .then(function (response) {
             sessionStorage.setItem('token', response['data']['data']['json']['auth_token']);
             sessionStorage.setItem('identity', 'patient');
-            browserHistory.push('/');
+            browserHistory.push('/patientoverview');
         })
         .catch(function (error) {
             console.error('error signing in: '+error)

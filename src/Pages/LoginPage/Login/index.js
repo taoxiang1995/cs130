@@ -60,6 +60,7 @@ class Login extends Component {
                     <div className="col-sm-6">
                         <div className = "login-group">
                             <input
+                                onClick={()=>this.props.PatientSignIn(this.state.userid, this.state.password)}
                                 className="btn btn-primary btn-block" type="submit" value="Login As Patient" name="login-patient"/>
                         </div>
                     </div>

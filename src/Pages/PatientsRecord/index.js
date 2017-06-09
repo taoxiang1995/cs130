@@ -29,12 +29,15 @@ class PatientsRecord extends Component {
 
     componentDidMount() {
         axios.get(`${serverAddress}api/v1/information`, {
-            headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
+            headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+            'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'},
             })
             .then((response)=>{
                 //do soemthign with respnse
+                debugger;
                 this.setState({
-                    records: response.data.data.response
+                    records: response.data.data.response.slice(0, 25)
                 })
             })
             .catch(function(error) {
@@ -49,6 +52,11 @@ class PatientsRecord extends Component {
     }
     
     patientSignUp() {
+        var popup = document.getElementById("signUpForm");
+        popup.classList.toggle("show");
+    }
+
+    patientSignupClose(){
         var popup = document.getElementById("signUpForm");
         popup.classList.toggle("show");
     }
