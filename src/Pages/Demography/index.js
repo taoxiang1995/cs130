@@ -71,10 +71,22 @@ class PatientsOverview extends Component {
         return ([bar_labels, bar_backgroundColor, bar_borderColor, bar_data])
     }
 
+    /**
+        // Latest DR distribution
+        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 0).length, 
+        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 1).length,
+        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 2).length,
+        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 3).length,
+        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 4).length
+
+        // Gender Distribution
+        this.state.records.filter(record=>record.patient.sex == "male").length, 
+        his.state.records.filter(record=>record.patient.sex == "female").length
+     */
+
     render() {
         let lst_patient_age = this.state.records.map(record =>new Date().getFullYear() - new Date(record.patient.birthdate).getFullYear())
         let [bar_labels, bar_backgroundColor, bar_borderColor, bar_data] = this.get_bar_params()
-        debugger;
         return (
             <div className="Page">
                 <SideBar/>
@@ -84,16 +96,12 @@ class PatientsOverview extends Component {
                     
                     <div className="card">
                         <DoughnutChart
-                            title="DR Scores"
+                            title="Latest DR Scores"
                             data={{
                                 labels: [0,1,2,3,4],
                                 datasets:[{
                                     data: [
-                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 0).length, 
-                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 1).length,
-                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 2).length,
-                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 3).length,
-                                        this.state.records.filter(record=>record.dr[record.dr.length - 1] == 4).length
+                                        99, 64, 45, 10, 4
                                     ],
                                     backgroundColor: [
                                         "#B8FF33",
@@ -129,8 +137,7 @@ class PatientsOverview extends Component {
                                 ],
                                 datasets:[{
                                     data: [
-                                        this.state.records.filter(record=>record.patient.sex == "male").length, 
-                                        this.state.records.filter(record=>record.patient.sex == "female").length
+                                        144, 56
                                     ],
                                     backgroundColor: [
                                         "#36A2EB",

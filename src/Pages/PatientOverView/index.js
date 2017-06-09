@@ -55,9 +55,10 @@ class PatientOverView extends Component {
     }
 
     formatData(items, fieldName){
+        debugger;
         return items.map(item=>{
             return {
-                x:item.created_at,
+                x:item.created_at, //new Date(item.created_at).toISOString().split('T')[0],
                 y:item[fieldName]
             }
         })
@@ -77,8 +78,8 @@ class PatientOverView extends Component {
                             <LargeNameCard
                                 name={this.state.patient_info.patient.name}
                                 id={this.state.patient_info.patient.id}
-                                age={this.state.patient_info.patient.weight}
-                                birthday={this.state.patient_info.patient.birthday}
+                                age={new Date().getFullYear() - new Date(this.state.patient_info.patient.birthdate).getFullYear()}
+                                birthday={this.state.patient_info.patient.birthdate}
                                 className="card"
                             />
                         </div>
@@ -87,8 +88,8 @@ class PatientOverView extends Component {
                             <NewRecordCard
                                 name={this.state.patient_info.patient.name}
                                 id={this.state.patient_info.patient.id}
-                                age={this.state.patient_info.patient.weight}
-                                birthday={this.state.patient_info.patient.birthday}
+                                age={new Date().getFullYear() - new Date(this.state.patient_info.patient.birthdate).getFullYear()}
+                                birthday={this.state.patient_info.patient.birthdate}
                                 className="card"
                                 DoctorUpdateForm={this.doctorUpdate.bind(this)}
                             />
