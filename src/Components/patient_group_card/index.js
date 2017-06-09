@@ -14,7 +14,7 @@ export class Card_create_group extends Component {
             name:'',
             age_max:"100",
             age_min:"0",
-            gender:'Both',
+            gender:'male',
             medication:'No Medication',
             policy:'No Policy',
             dr_max:"4",
@@ -45,7 +45,7 @@ export class Card_create_group extends Component {
             name:'',
             age_max:"100",
             age_min:"0",
-            gender:'Both',
+            gender:'male',
             medication:'No Medication',
             policy:'No Policy',
             dr_max:"4",
@@ -130,9 +130,8 @@ export class Card_create_group extends Component {
                         <DropdownButton
                             onSelect={this.handleDropDownSelect('gender')} 
                             title={this.state.gender} bsSize="small">
-                            <MenuItem eventKey="1">Both</MenuItem>
-                            <MenuItem eventKey="2">Male</MenuItem>
-                            <MenuItem eventKey="3">Female</MenuItem>
+                            <MenuItem eventKey="2">male</MenuItem>
+                            <MenuItem eventKey="3">female</MenuItem>
                         </DropdownButton>
                     </div>
                 </div>

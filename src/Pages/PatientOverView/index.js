@@ -97,22 +97,34 @@ class PatientOverView extends Component {
                         <div className="card">
                             <BloodStatLineChart 
                                 title="Blood Suger Changes"
-                                data={[this.formatData(this.state.patient_info.blood_sugar, "number")]}
+                                data={[{
+                                    data:this.formatData(this.state.patient_info.blood_sugar, "number"),
+                                    label:"blood suger"
+                                }]}
                             />
                         </div>
 
                          <div className="card">
                             <BloodStatLineChart
                                 title="Blood Pressure Low"
-                                data={[this.formatData(this.state.patient_info.blood_pressure, "low")]}
+                                data={[{
+                                    data: this.formatData(this.state.patient_info.blood_pressure, "low"),
+                                    label: "blood pressure"
+                                }]}
                             />
                         </div>
 
                         <div className="card">
                             <BloodStatLineChart
-                                title="Blood Pressure high"
-                                data={[this.formatData(this.state.patient_info.blood_pressure, "high"),
-                                this.formatData(this.state.patient_info.blood_fat, "number")]}
+                                title="Blood Pressure"
+                                data={[{
+                                    data:this.formatData(this.state.patient_info.blood_pressure, "high"),
+                                    label:'high'
+                                },
+                                {
+                                    data:this.formatData(this.state.patient_info.blood_fat, "number"),
+                                    label:'low'
+                                }]}
                             />
                         </div>
                     </div>
