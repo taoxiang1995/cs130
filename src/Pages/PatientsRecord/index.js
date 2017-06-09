@@ -67,6 +67,10 @@ class PatientsRecord extends Component {
                 return false;
         })
         .map(function(record){
+            let idx_last_bs = record.blood_sugar.length;
+            let idx_last_bf = record.blood_fat.length;
+            let idx_last_bp = record.blood_pressure.length;
+
             return (
                 <div className = "PatientsRecord-namecards col-md-4 col-sm-6 col-lg-3">
                     <Link to={"patientoverview?id="+record.patient.id}>
