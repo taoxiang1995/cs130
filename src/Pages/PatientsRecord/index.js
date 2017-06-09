@@ -59,19 +59,21 @@ class PatientsRecord extends Component {
                 return false;
         })
         .map(function(record){
-            debugger;
+            let idx_last_bs = record.blood_sugar.length;
+            let idx_last_bf = record.blood_fat.length;
+            let idx_last_bp = record.blood_pressure.length;
             return (
                 <div className = "PatientsRecord-namecards">
                     <Link to="patientoverview">
                         <NameCard
                             name={record.patient.name}
                             id={record.patient.id}
-                            birthday={record.patient.birthday}
+                            birthday={new Date().getFullYear() - new Date(record.patient.birthdate).getFullYear()}
                             age={record.patient.weight}
-                            blood_sugar={record.blood_sugar}
-                            blood_fat={record.blood_fat}
-                            blood_pressure_high={record.blood_pressure.high}
-                            blood_pressure_low={record.blood_pressure.low}
+                            blood_sugar={record.blood_sugar[idx_last_bs]? record.blood_sugar[idx_last_bs]:0}
+                            blood_fat={record.blood_fat[idx_last_bf]? record.blood_fat[idx_last_bf]:0}
+                            blood_pressure_high={record.blood_pressure[idx_last_bp]? record.blood_pressure[idx_last_bp].high:0}
+                            blood_pressure_low={record.blood_pressure[idx_last_bp]? record.blood_pressure[idx_last_bp].low:0}
                         />
                     </Link>
                 </div>
