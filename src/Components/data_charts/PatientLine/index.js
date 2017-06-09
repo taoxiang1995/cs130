@@ -34,7 +34,7 @@ import '../style.css';
 
 // const options={}
 
-const data = {
+const data_config = {
     // labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
         {
@@ -82,7 +82,21 @@ class BloodStatLineChart extends Component {
         };
     };
 
+    generateData(){
+        if (this.props.data[0]){
+            return this.props.data.map(data=>{
+                return Object.assign({}, data_config.datasets[0], {
+                    data
+                })
+            })   
+        }
+        else{
+            return []
+        }
+    }
+
     render() {
+        debugger;
         return (
             <div className="RectangleBackground">
                 <p className="Title">
@@ -106,11 +120,7 @@ class BloodStatLineChart extends Component {
 
                 <div className="Chart">
                     <Line data={{
-                        datasets:[
-                            Object.assign({}, data.datasets[0], {
-                                data: this.props.data,
-                            })
-                        ]
+                        datasets: this.generateData()
                     }} options={options}/>
                 </div>
             </div>
