@@ -46,24 +46,27 @@ class Login extends Component {
             <div className = "sign-in-block" id="signin-form">
                 <div className = "input-group" >
                     <span className="input-group-addon"><i className="fa fa-user-o"></i></span>
-                    <input className="form-control" type="text" placeholder="123456789" name="userid"/>
+                    <input
+                        onChange={this.handleInputChange.bind(this)}  
+                        className="form-control" type="text" placeholder="123456789" name="userid"/>
                 </div>
                 <div className = "input-group" >
                     <span className="input-group-addon"><i className="fa fa-key"></i></span>
-                    <input className="form-control" type="password" name="password"/>
+                    <input
+                        onChange={this.handleInputChange.bind(this)}  
+                        className="form-control" type="password" name="password"/>
                 </div>
                 <div className="row">
                     <div className="col-sm-6">
                         <div className = "login-group">
                             <input
-                                onClick={this.props.PatientSignOut} 
                                 className="btn btn-primary btn-block" type="submit" value="Login As Patient" name="login-patient"/>
                         </div>
                     </div>
                     <div className="col-sm-6">
                         <div className = "login-group">
                             <input
-                                onClick={this.props.DoctorSignOut} 
+                                onClick={()=>this.props.DocSignIn(this.state.userid, this.state.password)} 
                                 className="btn btn-primary btn-block" type="submit" value="Login As Doctor" name="login-doctor"/>
                         </div>
                     </div>

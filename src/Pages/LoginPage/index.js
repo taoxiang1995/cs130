@@ -20,7 +20,7 @@ class LoginPage extends Component {
         .then(function (response) {
             sessionStorage.setItem('token', response['data']['data']['json']['auth_token']);
             sessionStorage.setItem('identity', 'doctor');
-            browserHistory.push('/');
+            browserHistory.push('/patientsrecord');
 
         })
         .catch(function (error, response) {
@@ -29,14 +29,14 @@ class LoginPage extends Component {
     }
 
     DocSignIn(email, password){
-        axios.post(serverAddress+'api/v1/doc_sign_in', {
+        axios.post(serverAddress+'api/v1/auth_doctor', {
             email,
             password
         })
         .then(function (response) {
             sessionStorage.setItem('token', response['data']['data']['json']['auth_token']);
             sessionStorage.setItem('identity', 'doctor');
-            browserHistory.push('/');
+            browserHistory.push('/patientsrecord');
         })
         .catch(function (error) {
             console.error('error signing in: '+error)

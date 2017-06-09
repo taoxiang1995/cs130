@@ -4,8 +4,9 @@ import DoctorUpdateDrugs from '../../Components/doctor_update_drugs';
 import './style.css';
 import axios from 'axios';
 import Time from 'react-time';
+import {serverAddress} from '../../config';
 
-class PatientSignUp extends Component {
+class DoctorUpdate extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -97,36 +98,15 @@ class PatientSignUp extends Component {
     'DR_right_score:'+ `${this.state.DR_right_score}` +'\n'+
     'DR_left_score:'+ `${this.state.DR_left_score}` +'\n'+
     'sex:'+ this.state.sex +'\n')
-    this.setCurrentTime();
     this.postUpdate();
 }
 
-    setCurrentTime()
-    {
-        var time = new Date().now();
-        var timestring = <Time value={time} format="YYYY-MM-DD-HH-mm" />;
-        var newvisits = this.state.visits;
-        newvisits.visit_time = timestring;
-        this.setState({
-            DR_time:timestring,
-            blood_pressure_time:timestring,
-            blood_fat_time:timestring,
-            blood_sugar_time:timestring,
-            visits:newvisits
-        });
-    }
     postUpdate()
     {
-      axios.post('http://localhost:9000/doctor_update/id', {
-      personal_id:this.state.personal_id,
-      token:this.state.token,
-      name:this.state.name,
-      weight:this.state.weight,
-      height:this.state.height,
-      birthday:this.state.birthday,
-      last_visit:this.state.last_visit,
+        debugger;
+      axios.post(`${serverAddress}api/v1/information`, {
+      email:this.state.personal_id,
       DR:{
-            Time:this.state.DR_time,
             left_score:this.state.DR_left_score,
             right_score:this.state.DR_right_score,
             left_photo:this.state.DR_left_photo,
@@ -135,19 +115,17 @@ class PatientSignUp extends Component {
             left_note:this.state.DR_left_note
       },
       blood_fat:{
-            time:this.state.blood_fat_time,
-            value:this.state.blood_fat
+            number:this.state.blood_fat
       },
       blood_pressure:{
-            time:this.state.blood_pressure_time,
             high:this.state.blood_pressure_high,
             low:this.state.blood_pressure_low
       },
       blood_sugar:{
-            time:this.state.blood_sugar_time,
-            value:this.state.blood_sugar
+            number:this.state.blood_sugar
       },
-      visits:this.state.visits
+      },{
+          headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
       })
         .then((response)=>{
             if (response.token == null)
@@ -467,4 +445,4 @@ class PatientSignUp extends Component {
         
 }
 
-export default PatientSignUp;
+export default DoctorUpdate;

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './style.css';
 import axios from 'axios';
+import {serverAddress} from '../../config';
 class PatientSignUp extends Component {
     constructor(props){
         super(props);
         this.state={
-            personal_id:"xiangtao1995@gmail.com",
-            pass_word:"123456674",
+            email:"xiangtao1995@gmail.com",
+            password:"123456674",
             name:"taoxiang",
-            birthday:"19951124",
+            birthdate:"1995-11-24",
             height:180,
             weight:62,
             sex:"male",
             token:"12312fsdf2131321321",
-            submitClass : " SignupForm-Submit-Name-Default SignupForm-Submit-Name-Base noselect",
-            
+            submitClass : " SignupForm-Submit-Name-Default SignupForm-Submit-Name-Base noselect", 
         }
         this.submitClick = this.submitClick.bind(this);
         this.submitHover = this.submitHover.bind(this);
@@ -25,10 +25,10 @@ class PatientSignUp extends Component {
     
     submitClick(){
         this.submitHover()
-        console.log('personal_id:'+ this.state.personal_id +'\n'+
-        'pass_word:'+ this.state.pass_word +'\n'+
+        console.log('email:'+ this.state.email +'\n'+
+        'password:'+ this.state.password +'\n'+
         'name:'+ this.state.name +'\n'+
-        'birthday:'+ this.state.birthday +'\n'+
+        'birthdate:'+ this.state.birthdate +'\n'+
         'height:'+ `${this.state.height}`+'\n'+
         'weight:'+ `${this.state.weight}` +'\n'+
         'sex:'+ this.state.sex +'\n')
@@ -37,14 +37,16 @@ class PatientSignUp extends Component {
     
     postNewPatient()
     {
-        axios.post('http://localhost:9000/patient/sign_up', {
-            personal_id:this.state.personal_id,
-            pass_word:this.state.pass_word,
+        axios.post(`${serverAddress}api/v1/signup_patient`,{
+            email:this.state.email,
+            password:this.state.password,
             name:this.state.name,
-            birthday:this.state.birthday,
+            birthdate:this.state.birthdate,
             height:this.state.height,
             weight:this.state.weight,
             sex:this.state.sex
+        }, {
+                headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
         })
         .then((response)=>{
             if (response.token == null)
@@ -100,9 +102,9 @@ class PatientSignUp extends Component {
     <div className="SignupForm-Item">
     <div className="SignupForm-Item-Name noselect">Username:</div>
     <div className="SignupForm-Item-Lower">
-    <input className="SignupForm-Item-Input"  type="text"  name="personal_id" 
-    value={this.state.personal_id}
-    onInput={(e)=>this.setState({personal_id: e.target.value})} />
+    <input className="SignupForm-Item-Input"  type="text"  name="email" 
+    value={this.state.email}
+    onInput={(e)=>this.setState({email: e.target.value})} />
     <span className="SignupForm-Item-Unit" ></span>
     </div>
     </div>
@@ -110,9 +112,9 @@ class PatientSignUp extends Component {
     <div className="SignupForm-Item">
     <div className="SignupForm-Item-Name noselect">Password:</div>
     <div className="SignupForm-Item-Lower">
-    <input className="SignupForm-Item-Input"  type="text" name="pass_word" 
-    value={this.state.pass_word}
-    onInput={(e)=>this.setState({pass_word: e.target.value})} />
+    <input className="SignupForm-Item-Input"  type="text" name="password" 
+    value={this.state.password}
+    onInput={(e)=>this.setState({password: e.target.value})} />
     </div>
     </div>
     
@@ -129,10 +131,9 @@ class PatientSignUp extends Component {
     <div className="SignupForm-Item">
     <div className="SignupForm-Item-Name noselect">Birth Date:</div>
     <div className="SignupForm-Item-Lower">
-    <input className="SignupForm-Item-Input Birthday"  type="text" name="birthday" 
-    value={this.state.birthday}
-    onInput={(e)=>this.setState({birthday: e.target.value})} />
-    <span className="BirthdayUnit noselect" >YYYYMMDD</span>
+    <input className="SignupForm-Item-Input Birthday"  type="date" name="birthdate" 
+    value={this.state.birthdate}
+    onInput={(e)=>{this.setState({birthdate: e.target.value})}} />
     </div>
     </div>
     

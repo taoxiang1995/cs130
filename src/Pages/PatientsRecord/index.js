@@ -8,6 +8,7 @@ import PatientSignUp from '../../Components/patient_sign_up';
 import PatientUpdate from '../../Components/patient_update';
 import {Link} from 'react-router';
 import SideBar from '../../Components/SideBar';
+import {serverAddress} from '../../config';
 import './style.css';
 
 class PatientsRecord extends Component {
@@ -23,13 +24,13 @@ class PatientsRecord extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:9000/patients', {
-            //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        axios.get(`${serverAddress}api/v1/information`, {
+            headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
             })
             .then((response)=>{
                 //do soemthign with respnse
                 this.setState({
-                    records: response.data
+                    records: response.data.data.response
                 })
             })
             .catch(function(error) {
@@ -52,24 +53,25 @@ class PatientsRecord extends Component {
         return this.state.records
         .filter(
             (record) =>{
-                if (record.name.includes(this.state.searchTerm)){
+                if (record.patient.name.includes(this.state.searchTerm)){
                     return true;
                 }
                 return false;
         })
         .map(function(record){
+            debugger;
             return (
                 <div className = "PatientsRecord-namecards">
                     <Link to="patientoverview">
                         <NameCard
-                            name={record.name}
-                            id={record.id}
-                            birthday={record.birthday}
-                            age={record.weight}
-                            blood_sugar={record.stats.blood_sugar}
-                            blood_fat={record.stats.blood_fat}
-                            blood_pressure_high={record.stats.blood_pressure.high}
-                            blood_pressure_low={record.stats.blood_pressure.low}
+                            name={record.patient.name}
+                            id={record.patient.id}
+                            birthday={record.patient.birthday}
+                            age={record.patient.weight}
+                            blood_sugar={record.blood_sugar}
+                            blood_fat={record.blood_fat}
+                            blood_pressure_high={record.blood_pressure.high}
+                            blood_pressure_low={record.blood_pressure.low}
                         />
                     </Link>
                 </div>

@@ -125,7 +125,7 @@ class PatientUpdate extends Component {
                     <div className="UpdatePForm-Item">
                         <div className="UpdatePForm-Item-Name noselect">Blood Presure (Low):</div>
                         <div className="UpdatePForm-Item-Lower">
-                            <input className="UpdatePForm-Item-Input Birthday"  type="text" name="blood_pressure_low" 
+                            <input className="UpdatePForm-Item-Input Birthday" name="blood_pressure_low" 
                             value={this.state.blood_pressure_low}
                             onInput={(e)=>this.setState({blood_pressure_low: e.target.value})} />
                             <span className="UpdatePForm-Item-Unit noselect" >Un</span>
