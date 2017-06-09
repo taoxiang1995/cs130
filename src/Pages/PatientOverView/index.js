@@ -35,7 +35,8 @@ class PatientOverView extends Component {
 
     
     componentDidMount() {
-        axios.get(`${serverAddress}api/v1/information/${this.getUrlVars()["id"]}`, {
+        if (sessionStorage.getItem('identity')=='patient'){
+            axios.get(`${serverAddress}api/v1/patient`, {
             headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
             })
             .then((response)=>{
@@ -44,6 +45,18 @@ class PatientOverView extends Component {
                 })
             })
             .catch(function(error) {});
+        }
+        else{
+            axios.get(`${serverAddress}api/v1/information/${this.getUrlVars()["id"]}`, {
+            headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('token')},
+            })
+            .then((response)=>{
+                this.setState({
+                    patient_info:response.data.data.response
+                })
+            })
+            .catch(function(error) {});
+        }
     }
 
     doctorUpdate()
@@ -63,10 +76,9 @@ class PatientOverView extends Component {
         })
     }
 
-    render() {
-        if (this.state.patient_info.patient){
-            return (
-                <div className="Page">
+    renderPatientRecord(){
+        return (
+            <div className="Page">
                     <SideBar/>
 
                     <div className="info-cards-bg">
@@ -136,15 +148,24 @@ class PatientOverView extends Component {
                         </div>
                     </div>
                 </div>
-            );
-        }
-        else{
-            return(
-                <div>
+        )
+    }
+
+    renderLoading(){
+        return (
+            <div>
                     Loading...
                 </div>
-            )
-        }
+        )
+    }
+
+    render() {
+        debugger;
+        return (
+            <div>
+            {this.state.patient_info.patient? this.renderPatientRecord():this.renderLoading()}
+            </div>
+        )
     }
 }
 
