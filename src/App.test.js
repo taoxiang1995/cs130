@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import SearchBar from './Components/SearchBar';
 import Add from './Components/Add';
 import Logo from './Components/Logo';
-import DoctorUpdate from './Components/doctor_update';
+// import DoctorUpdate from './Components/doctor_update';
 import LargePatientCard from './Components/large_patient_card';
 import PatientSignUp from './Components/patient_sign_up';
 
@@ -39,9 +39,9 @@ it('render Logo', () => {
 
 
 
-it('render DoctorUpdate', () => {
-  shallow(<DoctorUpdate />);
-});
+// it('render DoctorUpdate', () => {
+//   shallow(<DoctorUpdate />);
+// });
 
 it('render LargePatientCard', () => {
   shallow(<LargePatientCard />);
@@ -72,7 +72,7 @@ it('Page PatientsRecord', () => {
 
 
 /*
-  Logic testing
+  API testing
 */
 test('Fetch patient records from back-end', () => {
 
@@ -91,6 +91,33 @@ test('Fetch patient records from back-end', () => {
 test('Fetch patient data from back-end', () => {
 
   axios.get('http://localhost:9000/patients', {
+            //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            })
+            .then((response)=>{
+                //do soemthign with respnse
+                 expect(response.data).toEqual(expect.any(Array));
+            })
+            .catch(function(error) {
+        
+        });
+});
+
+test('Fetch patient patients info from back-end', () => {
+
+  axios.get('http://localhost:9000/information', {
+            //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            })
+            .then((response)=>{
+                //do soemthign with respnse
+                 expect(response.data).toEqual(expect.any(Array));
+            })
+            .catch(function(error) {
+        });
+});
+
+test('Fetch patient info from back-end', () => {
+
+  axios.get('http://localhost:9000/information/1', {
             //headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
             })
             .then((response)=>{

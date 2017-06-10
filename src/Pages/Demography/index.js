@@ -89,7 +89,7 @@ class PatientsOverview extends Component {
         let [bar_labels, bar_backgroundColor, bar_borderColor, bar_data] = this.get_bar_params()
         return (
             <div className="Page">
-                <SideBar/>
+             
 
                 <div className="info-cards-bg">
                     <div className="title">Demographic Statistics</div>
